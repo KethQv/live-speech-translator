@@ -1,0 +1,23 @@
+{
+  "name": "live-speech-translator",
+  "version": "1.0.0",
+  "description": "Live speech caption translator.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KethQv/live-speech-translator.git"
+  },
+  "author": "Kenneth Quintero <kennethgqv@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KethQv/live-speech-translator/issues"
+  },
+  "homepage": "https://github.com/KethQv/live-speech-translator#readme",
+  "dependencies": {
+    "@vitalets/google-translate-api": "^7.0.0",
+    "express": "^4.17.1"
+  }
+}
