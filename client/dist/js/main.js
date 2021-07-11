@@ -25,7 +25,7 @@ recognition.addEventListener("end", (e) => {
 
 recognition.addEventListener("result", (e) => {
   for (let i = e.resultIndex; i < e.results.length; i++) {
-    displayTranscript(e.results[i][0]);
+    displayTranscript(e.results[i][0], e.results[i].isFinal);
   }
 });
 
@@ -40,15 +40,16 @@ function recognitionListen() {
   }
 }
 
-function displayTranscript(result) {
+function displayTranscript(result, isFinal) {
   let space = "";
 
   if (transcriptContainer.textContent.length > 0) space = " ";
 
-  if (result.isFinal) {
-    transcriptContainer.textContent =
-      space + finalTranscript + result.transcript;
-    updateFinalTranscript();
+  if (isFinal) {
+    translate(result.transcript, "es").then((translation) => {
+      transcriptContainer.textContent = space + finalTranscript + translation;
+      updateFinalTranscript();
+    });
   } else if (result.confidence > 0.5) {
     transcriptContainer.textContent =
       space + finalTranscript + result.transcript;
@@ -60,4 +61,19 @@ function displayTranscript(result) {
 
 function updateFinalTranscript() {
   finalTranscript = transcriptContainer.textContent;
+}
+
+async function translate(text, language) {
+  const response = await fetch("http://localhost:3000/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      text: text,
+      language: language,
+    }),
+  });
+
+  const translation = await response.text();
+
+  return translation;
 }

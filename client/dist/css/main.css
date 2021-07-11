@@ -1,0 +1,49 @@
+#mic-on,
+#mic-off {
+  -webkit-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+#mic-on::after {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: -6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: crimson;
+  -webkit-animation: mic-recording 1s ease-in-out infinite alternate;
+          animation: mic-recording 1s ease-in-out infinite alternate;
+}
+
+.hide {
+  opacity: 0;
+}
+
+@-webkit-keyframes mic-recording {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes mic-recording {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 0.3;
+  }
+}
+/*# sourceMappingURL=main.css.map */
