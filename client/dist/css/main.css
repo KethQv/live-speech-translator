@@ -1,10 +1,49 @@
-#mic-on,
-#mic-off {
-  -webkit-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out;
+#sidebar {
+  position: absolute;
+  top: 0;
+  left: -180px;
+  height: 100%;
+  width: 180px;
+  -webkit-transition: left 350ms ease-in-out;
+  transition: left 350ms ease-in-out;
+  z-index: 1000;
 }
 
-#mic-on::after {
+#sidebar select {
+  font-size: 12px;
+}
+
+#toggler-wrapper {
+  position: relative;
+}
+
+#toggler-wrapper #sidebar-toggler {
+  position: absolute;
+  left: 202px;
+  top: 58px;
+  -webkit-transition: -webkit-transform 300ms ease-in-out;
+  transition: -webkit-transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+}
+
+#mic-container {
+  position: absolute;
+  right: 45px;
+  top: 45%;
+}
+
+#mic-container #mic-wrapper {
+  position: relative;
+}
+
+#mic-container .mic {
+  position: absolute;
+  -webkit-transition: opacity 500ms ease-in-out;
+  transition: opacity 500ms ease-in-out;
+}
+
+#mic-container #mic-on::after {
   content: "";
   position: absolute;
   left: -12px;
@@ -15,6 +54,22 @@
   background-color: crimson;
   -webkit-animation: mic-recording 1s ease-in-out infinite alternate;
           animation: mic-recording 1s ease-in-out infinite alternate;
+}
+
+#main-content {
+  position: relative;
+}
+
+#main-content #blur {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-backdrop-filter 350ms ease-in-out;
+  transition: -webkit-backdrop-filter 350ms ease-in-out;
+  transition: backdrop-filter 350ms ease-in-out;
+  transition: backdrop-filter 350ms ease-in-out, -webkit-backdrop-filter 350ms ease-in-out;
 }
 
 .hide {
