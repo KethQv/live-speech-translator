@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "../client/dist")));
+app.use(express.static(path.join(__dirname, "../frontend/public")));
 
 app.post("/", (req, res) => {
   getTranslation(req.body.text, { to: req.body.language }).then(
