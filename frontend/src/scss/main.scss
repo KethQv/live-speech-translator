@@ -1,30 +1,40 @@
+:root {
+  --background-color: #fff;
+  --foreground-color: #212529;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+}
+
 // sidebar related
 #sidebar {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
   position: fixed;
   top: 0;
-  left: -180px;
+  left: -250px;
   height: 100%;
-  width: 180px;
-  transition: left 350ms ease-in-out;
+  width: 250px;
   z-index: 1000;
+  transition: left 350ms ease-in-out;
 
   select {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
-#toggler-wrapper {
-  position: relative;
-
-  #sidebar-toggler {
-    position: absolute;
-    left: 202px;
-    top: 58px;
-    transition: transform 300ms ease-in-out;
-  }
+#sidebar-toggler {
+  position: fixed;
+  left: 30px;
+  top: 50%;
+  z-index: 1000;
+  transform: translateY(-50%);
+  transition: transform 300ms ease-in-out, left 300ms ease-in-out;
 }
 
-// mic related
+// mic icon related
 .mic {
   position: fixed;
   right: 30px;
@@ -57,6 +67,8 @@
 }
 
 #main-content {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
   position: relative;
 
   #blur {

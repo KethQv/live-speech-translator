@@ -1,30 +1,41 @@
+:root {
+  --background-color: #fff;
+  --foreground-color: #212529;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+}
+
 #sidebar {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
   position: fixed;
   top: 0;
-  left: -180px;
+  left: -250px;
   height: 100%;
-  width: 180px;
+  width: 250px;
+  z-index: 1000;
   -webkit-transition: left 350ms ease-in-out;
   transition: left 350ms ease-in-out;
-  z-index: 1000;
 }
 
 #sidebar select {
-  font-size: 12px;
+  font-size: 16px;
 }
 
-#toggler-wrapper {
-  position: relative;
-}
-
-#toggler-wrapper #sidebar-toggler {
-  position: absolute;
-  left: 202px;
-  top: 58px;
-  -webkit-transition: -webkit-transform 300ms ease-in-out;
-  transition: -webkit-transform 300ms ease-in-out;
-  transition: transform 300ms ease-in-out;
-  transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+#sidebar-toggler {
+  position: fixed;
+  left: 30px;
+  top: 50%;
+  z-index: 1000;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: left 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+  transition: left 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, left 300ms ease-in-out;
+  transition: transform 300ms ease-in-out, left 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
 }
 
 .mic {
@@ -77,6 +88,8 @@
 }
 
 #main-content {
+  background-color: var(--background-color);
+  color: var(--foreground-color);
   position: relative;
 }
 
