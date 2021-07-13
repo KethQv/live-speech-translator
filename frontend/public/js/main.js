@@ -76,8 +76,6 @@ function updateFinalTranscript() {
 }
 
 async function translate(text) {
-  console.log("from", fromLang);
-  console.log("to", toLang);
   const request = {
     method: "POST",
     headers: { "Content-Type": "application/json" },

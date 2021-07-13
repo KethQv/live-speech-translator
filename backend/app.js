@@ -18,11 +18,13 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  getTranslation(req.body.text, { from: req.body.from, to: req.body.to }).then(
-    (translation) => {
+  getTranslation(req.body.text, { from: req.body.from, to: req.body.to })
+    .then((translation) => {
       res.send(translation);
-    }
-  );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.listen(process.env.PORT || 3000);
