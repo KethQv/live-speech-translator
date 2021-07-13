@@ -12,7 +12,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "../frontend/public")));
 
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index.ejs", {
+    languages: translate.languages,
+  });
 });
 
 app.post("/", (req, res) => {
