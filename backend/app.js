@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  getTranslation(req.body.text, { to: req.body.language }).then(
+  getTranslation(req.body.text, { from: req.body.from, to: req.body.to }).then(
     (translation) => {
       res.send(translation);
     }
