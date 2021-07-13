@@ -27,23 +27,17 @@
   transition: transform 300ms ease-in-out, -webkit-transform 300ms ease-in-out;
 }
 
-#mic-container {
-  position: absolute;
-  right: 45px;
-  top: 45%;
-}
-
-#mic-container #mic-wrapper {
-  position: relative;
-}
-
-#mic-container .mic {
-  position: absolute;
+.mic {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   -webkit-transition: opacity 500ms ease-in-out;
   transition: opacity 500ms ease-in-out;
 }
 
-#mic-container #mic-on::after {
+#mic-on::after {
   content: "";
   position: absolute;
   left: -12px;
@@ -54,26 +48,6 @@
   background-color: crimson;
   -webkit-animation: mic-recording 1s ease-in-out infinite alternate;
           animation: mic-recording 1s ease-in-out infinite alternate;
-}
-
-#main-content {
-  position: relative;
-}
-
-#main-content #blur {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  -webkit-transition: -webkit-backdrop-filter 350ms ease-in-out;
-  transition: -webkit-backdrop-filter 350ms ease-in-out;
-  transition: backdrop-filter 350ms ease-in-out;
-  transition: backdrop-filter 350ms ease-in-out, -webkit-backdrop-filter 350ms ease-in-out;
-}
-
-.hide {
-  opacity: 0;
 }
 
 @-webkit-keyframes mic-recording {
@@ -100,5 +74,25 @@
             transform: scale(1);
     opacity: 0.3;
   }
+}
+
+#main-content {
+  position: relative;
+}
+
+#main-content #blur {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-backdrop-filter 350ms ease-in-out;
+  transition: -webkit-backdrop-filter 350ms ease-in-out;
+  transition: backdrop-filter 350ms ease-in-out;
+  transition: backdrop-filter 350ms ease-in-out, -webkit-backdrop-filter 350ms ease-in-out;
+}
+
+.hide {
+  opacity: 0;
 }
 /*# sourceMappingURL=main.css.map */
