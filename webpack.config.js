@@ -10,7 +10,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 config = {
   plugins: [], // we'll fill this depending in our needs
   output: {
-    filename: "main.js",
+    filename: "main.[hash].js",
     clean: true,
   },
   devServer: {
@@ -45,7 +45,7 @@ config = {
 // prettier-ignore
 if (currentTask == "build") {
   // remove the style-loader to prevent injection of CSS in JS
-  config.plugins.push(new MiniCssExtractPlugin({ filename: "main.css" }));
+  config.plugins.push(new MiniCssExtractPlugin({ filename: "main.[hash].css" }));
 
   // add the mini-css's loader
   config.module.rules[1].use[0] = MiniCssExtractPlugin.loader;
