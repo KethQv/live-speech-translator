@@ -2,10 +2,10 @@
   "name": "live-speech-translator",
   "version": "1.0.0",
   "description": "Live speech caption translator.",
-  "main": "backend/app.js",
+  "private": true,
   "scripts": {
-    "start": "node backend/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -19,13 +19,18 @@
   "homepage": "https://github.com/KethQv/live-speech-translator#readme",
   "dependencies": {
     "@vitalets/google-translate-api": "^7.0.0",
-    "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
     "nodemon": "^2.0.10"
   }
 }
