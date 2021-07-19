@@ -1,7 +1,6 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development",
   devServer: {
     port: 6969,
     contentBase: path.resolve(__dirname, "dist"),
