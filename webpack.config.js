@@ -5,10 +5,11 @@ const currentTask = process.env.npm_lifecycle_event;
 
 // plugins
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // configuration optimazed for development
-config = {
-  plugins: [], // we'll fill this depending in our needs
+const config = {
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
   output: {
     filename: "main.[hash].js",
     clean: true,
