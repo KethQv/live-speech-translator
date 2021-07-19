@@ -6,12 +6,14 @@ const currentTask = process.env.npm_lifecycle_event;
 // plugins
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 
 // configuration optimazed for development
 const config = {
   plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
   output: {
     filename: "main.[hash].js",
+    path: path.resolve(__dirname, "dist"),
     clean: true,
   },
   devServer: {
@@ -46,7 +48,7 @@ const config = {
 // prettier-ignore
 if (currentTask == "build") {
   // remove the style-loader to prevent injection of CSS in JS
-  config.plugins.push(new MiniCssExtractPlugin({ filename: "main.[hash].css" }));
+  config.plugins.push(new MiniCssExtractPlugin({ filename: "main.[hash].css" }), new WebpackManifestPlugin());
 
   // add the mini-css's loader
   config.module.rules[1].use[0] = MiniCssExtractPlugin.loader;
