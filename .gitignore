@@ -1,3 +1,4 @@
 /.vscode
 /backend/node_modules
 /.prettierignore
+node_modules
