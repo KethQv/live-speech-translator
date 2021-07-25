@@ -1,4 +1,4 @@
-/.vscode
-/backend/node_modules
-/.prettierignore
+.vscode
+.prettierignore
+dist/main.css.map
 node_modules

@@ -5,11 +5,11 @@ const path = require("path");
 const app = express();
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "src"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "dist")));
 
 app.get("/", (req, res) => {
   res.render("index.ejs", {
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/", (req, res) => {
+app.post("/translate", (req, res) => {
   getTranslation(req.body.text, { from: req.body.from, to: req.body.to })
     .then((translation) => {
       res.send(translation);
@@ -27,7 +27,7 @@ app.post("/", (req, res) => {
     });
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 8000);
 
 async function getTranslation(text, language) {
   const response = await translate(text, language);
