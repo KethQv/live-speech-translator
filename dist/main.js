@@ -66,8 +66,11 @@ async function translate(text) {
       to: toLang,
     }),
   };
-  const response = await fetch("http://localhost:8000/translate", request);
+  const response = await fetch(
+    "https://live-speech-translator.herokuapp.com/translate",
+    request
+  );
   const translation = await response.text();
   insertTranslation(translation);
 }
-// "https://live-speech-translator.herokuapp.com/";
+// "https://live-speech-translator.herokuapp.com/translate";
