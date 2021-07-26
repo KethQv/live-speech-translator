@@ -1,4 +1,4 @@
 .vscode
 .prettierignore
-dist/main.css.map
+dist/style.css.map
 node_modules

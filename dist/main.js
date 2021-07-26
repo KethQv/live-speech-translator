@@ -1,78 +1,59 @@
-const transcriptContainer = document.getElementById("transcript-container");
-const micOn = document.getElementById("mic-on");
-const micOff = document.getElementById("mic-off");
-const languageFrom = document.getElementById("language-from");
-const languageTo = document.getElementById("language-to");
+const translationContainer = document.querySelector(".translation-container");
+const finalTrans = document.querySelector(".final-translation");
+const interimTrans = document.querySelector(".interim-translation");
+const startBtn = document.querySelector(".start-button");
 let fromLang = "auto";
-let toLang = "en";
+let toLang = "es";
 
 const recognition = new webkitSpeechRecognition();
-let recognitionListening = false;
 recognition.continuous = true;
 recognition.interimResults = true;
 recognition.lang = "en-US";
-let finalTranscript = "";
 
-document.addEventListener("keypress", (e) => {
-  if (e.key === " ") recognitionListen();
+let newLineTimer;
+let recognizing = true;
+
+toggleStartStop();
+
+function toggleStartStop() {
+  if (recognizing) {
+    recognition.stop();
+    recognizing = false;
+    startBtn.innerHTML = "Click to Speak";
+  } else {
+    recognition.start();
+    recognizing = true;
+    startBtn.innerHTML = "Click to Stop";
+  }
+}
+
+recognition.addEventListener("start", () => {
+  console.log("Recognition Started!");
 });
 
-languageFrom.addEventListener("change", (e) => {
-  fromLang = languageFrom.value;
-});
-
-languageTo.addEventListener("change", (e) => {
-  toLang = languageTo.value;
-});
-
-recognition.addEventListener("start", (e) => {
-  console.log("listening");
-  recognitionListening = true;
-});
-
-recognition.addEventListener("end", (e) => {
-  console.log("not listening");
-  recognitionListening = false;
+recognition.addEventListener("end", () => {
+  console.log("Recognition Ended!");
 });
 
 recognition.addEventListener("result", (e) => {
+  const space = translationContainer.innerHTML.length > 0 ? " " : "";
+
   for (let i = e.resultIndex; i < e.results.length; i++) {
-    displayTranscript(e.results[i][0], e.results[i].isFinal);
+    if (e.results[i].isFinal) {
+      if (newLineTimer) clearTimeout(newLineTimer);
+      newLineTimer = setTimeout(insertBr(), 3000);
+      translate(e.results[i][0].transcript);
+    }
   }
 });
 
-function recognitionListen() {
-  micOff.classList.toggle("hide");
-  micOn.classList.toggle("hide");
-
-  if (recognitionListening) {
-    recognition.stop();
-  } else {
-    recognition.start();
-  }
+function insertBr() {
+  finalTrans.innerHTML += "<br>";
 }
 
-function displayTranscript(result, isFinal) {
-  let space = "";
-
-  if (transcriptContainer.textContent.length > 0) space = " ";
-
-  if (isFinal) {
-    translate(result.transcript).then((translation) => {
-      transcriptContainer.textContent = space + finalTranscript + translation;
-      updateFinalTranscript();
-    });
-  } else if (result.confidence > 0.5) {
-    transcriptContainer.textContent =
-      space + finalTranscript + result.transcript;
-  } else if (result.confidence > 0.35) {
-    transcriptContainer.textContent +=
-      space + finalTranscript + result.transcript;
-  }
-}
-
-function updateFinalTranscript() {
-  finalTranscript = transcriptContainer.textContent;
+function insertTranslation(translation) {
+  finalTrans.innerHTML += translation;
+  interimTrans.innerHTML = "";
 }
 
 async function translate(text) {
@@ -85,10 +66,8 @@ async function translate(text) {
       to: toLang,
     }),
   };
-  const response = await fetch("http://localhost:8000/", request);
-
+  const response = await fetch("http://localhost:8000/translate", request);
   const translation = await response.text();
-
-  return translation;
+  insertTranslation(translation);
 }
 // "https://live-speech-translator.herokuapp.com/";
