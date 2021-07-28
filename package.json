@@ -2,9 +2,9 @@
   "name": "live-speech-translator",
   "version": "1.0.0",
   "description": "Live speech caption translator.",
-  "main": "backend/app.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node backend/app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +20,8 @@
   "dependencies": {
     "@vitalets/google-translate-api": "^7.0.0",
     "ejs": "^3.1.6",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "google-translate": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.10"
