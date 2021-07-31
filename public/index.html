@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/style.css" />
+    <title>Speech translator</title>
+  </head>
+  <body>
+
+    <div class="modal fade" id="configurationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">Configuration</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <div class="row">
+                <h5>Choose Language</h5>
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="fromLanguageInput">From:</label>
+                  <select class="form-select" id="fromLanguageInput">
+                    <!-- create options dynamically and storage in local storage -->
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="toLanguageInput">To:</label>
+                  <select class="form-select" id="toLanguageInput">
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-warning">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-container">
+      <div class="transcription-container position-relative">
+        <div class="lang-helper lang-from-helper text-muted">From: <span></span></div>
+      </div>
+      <div class="translation-container position-relative">
+        <div class="lang-helper lang-to-helper text-muted">To: <span></span></div>
+      </div>
+    </div>
+
+    <nav class="my-nav navbar navbar-expand-lg navbar-dark fixed-bottom py-3">
+      <div class="container-fluid px-3 px-lg-3">
+        <div>
+          <button type="button" class="btn btn-lg btn-outline-light" data-bs-toggle="modal" data-bs-target="#configurationModal"><i class="bi bi-gear"></i></button>
+          <button type="button" class="start-button btn btn-lg btn-warning px-4" onclick="toggleStartStop()"><span>Start recording</span> <i class="bi bi-mic"></i></button>
+        </div>
+        <a href="#" class="navbar-brand">Speech Translator :)</a>
+      </div>
+    </nav>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>
