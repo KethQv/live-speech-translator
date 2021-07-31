@@ -1,21 +1,26 @@
-// prettier-ignore
+const recognition = new webkitSpeechRecognition();
+recognition.continuous = true;
+recognition.interimResults = true;
+
 const transcriptionContainer = document.querySelector(".transcription-container");
 const translationContainer = document.querySelector(".translation-container");
 const startBtn = document.querySelector(".start-button");
 const startBtnSpan = document.querySelector(".start-button span");
 const toLanguageInput = document.getElementById("toLanguageInput");
 const fromLanguageInput = document.getElementById("fromLanguageInput");
+const cancelBtn = document.getElementById("cancel-btn");
+const saveBtn = document.getElementById("save-btn");
 
-const recognition = new webkitSpeechRecognition();
-recognition.continuous = true;
-recognition.interimResults = true;
-recognition.lang = "es-MX";
+const domConfigModal = document.getElementById("configurationModal");
+const instConfigModal = bootstrap.Modal.getOrCreateInstance(domConfigModal);
 
 let recognizing = false;
 let resultTimer;
 
 let languageFrom;
 let languageTo;
+
+let saveBtnWasPressed = false;
 
 if (localStorage.getItem("languageFrom")) {
   languageFrom = localStorage.getItem("languageFrom");
@@ -33,14 +38,23 @@ if (localStorage.getItem("languageTo")) {
   populateLanguagesTo();
 }
 
-fromLanguageInput.onchange = () => {
-  localStorage.setItem("languageFrom", fromLanguageInput.value);
-  recognition.lang = fromLanguageInput.value;
-}
+domConfigModal.addEventListener("hide.bs.modal", () => {
+  if (saveBtnWasPressed) {
+    localStorage.setItem("languageFrom", fromLanguageInput.value);
+    recognition.lang = fromLanguageInput.value;
 
-toLanguageInput.onchange = () => {
-  localStorage.setItem("languageTo", toLanguageInput.value);
-  languageTo = toLanguageInput.value;
+    localStorage.setItem("languageTo", toLanguageInput.value);
+    languageTo = toLanguageInput.value;
+  } else {
+    fromLanguageInput.value = localStorage.getItem("languageFrom");
+    toLanguageInput.value = localStorage.getItem("languageTo")
+  }
+  saveBtnWasPressed = false;
+});
+
+saveBtn.onclick = () => {
+  saveBtnWasPressed = true;
+  instConfigModal.hide();
 }
 
 function toggleStartStop() {
