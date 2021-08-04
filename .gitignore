@@ -1,4 +1,5 @@
 .vscode
 .prettierignore
-dist/style.css.map
+public/style.css.map
 node_modules
+.env
