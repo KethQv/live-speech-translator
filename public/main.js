@@ -132,14 +132,14 @@ async function translate(text) {
     method: "POST",
   };
   // change to "https://live-speech-translator.herokuapp.com/translate" when needed
-  const response = await fetch("http://localhost:3000/translate", request);
+  const response = await fetch("https://live-speech-translator.herokuapp.com/translate", request);
   const translation = await response.text();
   return translation;
 }
 
 async function populateLanguagesTo(def="es") {
   // change to "https://live-speech-translator.herokuapp.com/get-languages" when needed
-  const response = await fetch("http://localhost:3000/get-languages");
+  const response = await fetch("https://live-speech-translator.herokuapp.com/get-languages");
   const languages = await response.json();
   for (let lang of languages) {
     const option = document.createElement("option");
